@@ -1,0 +1,1 @@
+MENU_OPTION = ( 'NEW GAME 1P', 'SCORE', 'EXIT')
