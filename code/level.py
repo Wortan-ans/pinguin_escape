@@ -1,11 +1,24 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import ent
+import pygame
+from pygame import Surface, Rect
+
+from code.entity import Entity
+from code.entityFactory import EntityFactory
+
 
 class Level:
-    def __init__(self):
-        self.windows = None
-        self.name = None
-        self.entity_list = None
+    def __init__(self, window: Surface, name: str, game_mode: str):
+        self.window = window
+        self.name = name
+        self.entity_list: list[Entity] =[]
+        self.entity_list.extend(EntityFactory.get_entity('level1a'))
 
-    def run(self, ):
+    def run(self):
+        while True:
+            for ent in self.entity_list:
+                self.window.blit(source=ent.surf, dest= ent.rect)
+                ent.move()
+            pygame.display.flip()
         pass

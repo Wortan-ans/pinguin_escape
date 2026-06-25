@@ -2,18 +2,28 @@
 # -*- coding: utf-8 -*-
 import pygame
 
+from code.level import Level
+from code.const import MENU_OPTION
 from code.menu import Menu
+
 
 
 class Game:
     def __init__(self):
         pygame.init()
-        self.window = pygame.display.set_mode(size=(888, 500))
+        self.window = pygame.display.set_mode(size=(576, 324))
 
     def run(self):
         while True:
             menu = Menu(self.window)
-            menu.run()
-            pass
+            menu_return = menu.run()
 
+            if menu_return == MENU_OPTION[0]:
+                level = Level(self.window, 'Level1', menu_return)
+                level_return = level.run()
+            elif menu_return == MENU_OPTION[2]: # parte do menu responsável por sair
+                pygame.quit()
+                quit()
+            else:
+                pass
 
