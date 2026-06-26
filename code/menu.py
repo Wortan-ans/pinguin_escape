@@ -9,7 +9,7 @@ from code.const import MENU_OPTION
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load("./asset/menuBG.png")
+        self.surf = pygame.image.load("./asset/menuBG.png").convert_alpha() #otimizar transparência da imagem
         self.rect = self.surf.get_rect() #left=0 top=0 é o padrão
 
 
