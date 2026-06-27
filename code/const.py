@@ -13,3 +13,15 @@ ENTITY_SPEED = {
     'rat2': 5,
 }
 EVENT_ENEMY = pygame.USEREVENT + 1
+
+ENTITY_HP ={
+    'level1a0':6545,
+    'level1a1':5644,
+    'level1a2':6445,
+    'level1a3':8989,
+    'rat': 50,
+    'rat1': 20,
+    'rat2': 10,
+    'player': 50,
+    'playershot': 1,
+}

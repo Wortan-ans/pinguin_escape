@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 import pygame
 from code.entity import Entity
+from code.shot import Shot
 
 
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
+        self.shot_delay = 33
 
     def move(self, ):
         pressed_keys = pygame.key.get_pressed()
@@ -19,3 +21,13 @@ class Player(Entity):
         if pressed_keys[pygame.K_RIGHT] and self.rect.right < 500:
             self.rect.centerx += 1
         pass
+    def shoot(self):
+        self.shot_delay -= 1
+        if self.shot_delay == 0:
+            self.shot_delay = 33
+            pressed_key = pygame.key.get_pressed()
+            if pressed_key[pygame.K_SPACE]:
+                return Shot(name=f'{self.name}shot', position=(self.rect.centerx, self.rect.centery))
+            return None
+        return None
+
