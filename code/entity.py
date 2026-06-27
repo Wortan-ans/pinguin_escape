@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 import pygame
 
-from code.const import ENTITY_HP
+from code.const import ENTITY_HP, ENTITY_DMG
 
 
 class Entity(ABC):
@@ -14,6 +14,8 @@ class Entity(ABC):
         self.rect = self.surf.get_rect(left=position[0], top=position[1])
         self.speed = 0
         self.hp = ENTITY_HP[self.name]
+        self.dmg = ENTITY_DMG[self.name]
+        self.last_dmg = 'None'
 
     @abstractmethod
     def move( self, ):

@@ -25,3 +25,15 @@ ENTITY_HP ={
     'player': 50,
     'playershot': 1,
 }
+
+ENTITY_DMG = {
+    'level1a0':0,
+    'level1a1':0,
+    'level1a2':0,
+    'level1a3':0,
+    'rat': 5,
+    'rat1': 2,
+    'rat2': 1,
+    'player': 1,
+    'playershot': 10,
+}
