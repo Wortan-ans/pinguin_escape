@@ -2,6 +2,7 @@ import pygame
 
 from code.enemy import Enemy
 from code.entity import Entity
+from code.player import Player
 from code.shot import Shot
 
 
@@ -24,6 +25,11 @@ class Mediator:
             valid_collision = True
         elif isinstance(ent1, Shot) and isinstance(ent2, Enemy):
             valid_collision = True
+        if isinstance(ent1, Enemy) and isinstance(ent2, Player):
+            valid_collision = True
+        elif isinstance(ent1, Player) and isinstance(ent2, Enemy):
+            valid_collision = True
+
 
         if valid_collision:
             if (ent1.rect.right >= ent2.rect.left and
@@ -34,6 +40,13 @@ class Mediator:
                 ent2.hp -= ent1.dmg
                 ent1.last_dmg = ent2.last_dmg
                 ent2.last_dmg = ent1.last_dmg
+
+    @staticmethod
+    def __give_score(enemy: Enemy, entity_list: list[Entity]):
+        if enemy.last_dmg == 'playershot' or 'player':
+            for ent in entity_list:
+                if ent.name == 'player':
+                    ent.score += enemy.score
 
     @staticmethod
     def verify_collision(entity_list: list[Entity]):
@@ -48,5 +61,7 @@ class Mediator:
     def verify_hp(entity_list: list[Entity]):
         for ent in entity_list:
             if ent.hp <= 0:
+                if isinstance(ent, Enemy):
+                    Mediator.__give_score(ent, entity_list)
                 entity_list.remove(ent)
 

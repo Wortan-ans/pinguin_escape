@@ -11,7 +11,7 @@ from code.const import EVENT_ENEMY
 from code.entity import Entity
 from code.entityFactory import EntityFactory
 from code.mediator import Mediator
-
+ct=(160, 32, 240)  # cor, apenas para reduzir o tamanho
 
 class Level:
     def __init__(self,window, name,game_mode):
@@ -36,6 +36,9 @@ class Level:
                     shoot = ent.shoot()
                     if shoot is not None:
                      self.entity_list.append(shoot)
+                if ent.name == 'player':
+                    self.level_text(15, f'Player -HP: {ent.hp}', text_color=ct,text_pos= (10, 25))
+                    self.level_text(15, f'Score: {ent.score}', text_color=ct, text_pos=(10, 45))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -45,8 +48,10 @@ class Level:
                     choice = random.choice(('rat', 'rat1', 'rat2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
 
-            self.level_text(15, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s',text_color=(160, 32, 240),text_pos= (10, 5))
-            self.level_text(15, f'fps: {clock.get_fps():.0f}', text_color=(160, 32, 240),text_pos= (10, 305))
+
+
+            self.level_text(15, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s',text_color=ct,text_pos= (10, 5))
+            self.level_text(15, f'fps: {clock.get_fps():.0f}', text_color=ct,text_pos= (10, 305))
             pygame.display.flip()
 
             Mediator.verify_collision(entity_list=self.entity_list)

@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 import pygame
 
-from code.const import ENTITY_HP, ENTITY_DMG
+from code.const import ENTITY_HP, ENTITY_DMG, ENTITY_SCORE
 
 
 class Entity(ABC):
@@ -15,6 +15,7 @@ class Entity(ABC):
         self.speed = 0
         self.hp = ENTITY_HP[self.name]
         self.dmg = ENTITY_DMG[self.name]
+        self.score = ENTITY_SCORE[self.name]
         self.last_dmg = 'None'
 
     @abstractmethod
