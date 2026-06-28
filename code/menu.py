@@ -22,6 +22,9 @@ class Menu:
             self.menu_text(text_size=46, text= 'Penguin', text_color=(176,205,223),text_center_pos=(288,52))
             self.menu_text(text_size=33, text='VS', text_color=(152, 166, 176), text_center_pos=(288, 94))
             self.menu_text(text_size=46, text='Rats', text_color=(128, 128, 128), text_center_pos=(288, 133))
+            self.menu_text(text_size=15, text='space - atira', text_color=(255, 0, 0), text_center_pos=(40, 270))
+            self.menu_text(text_size=15, text='setas - movimentam', text_color=(255,0,0), text_center_pos=(65, 295))
+
 
             for i in range(len(MENU_OPTION)):
                 if i==menu_option:
