@@ -6,25 +6,29 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
+from code import player
 from code.player import Player
-from code.const import EVENT_ENEMY
+from code.const import EVENT_ENEMY, EVENT_TIMEOUT
 from code.entity import Entity
 from code.entityFactory import EntityFactory
 from code.mediator import Mediator
-ct=(160, 32, 240)  # cor, apenas para reduzir o tamanho
+
+ct=(237, 33, 0)  # cor vermelha, hud, apenas para reduzir o tamanho
 
 class Level:
-    def __init__(self,window, name,game_mode):
+    def __init__(self,window: Surface, name: str,menu_return, player_score:list[int]):
         self.window = window
         self.name = name
-        self.game_mode = game_mode
         self.entity_list: list[Entity] =[]
-        self.entity_list.extend(EntityFactory.get_entity('level1a'))
-        self.entity_list.append(EntityFactory.get_entity('player')) #append é por causa de uma entidade
-        self.timeout: int = 90000  # milisegundos, 90 segundos
+        self.entity_list.extend(EntityFactory.get_entity(self.name + 'a'))
+        x = (EntityFactory.get_entity('player'))
+        x.score = player_score[0]
+        self.entity_list.append(x)
+        self.timeout: int = 40000  # milisegundos, 90 segundos
         pygame.time.set_timer(EVENT_ENEMY, 1500)
+        pygame.time.set_timer(EVENT_TIMEOUT, 100)
 
-    def run(self):
+    def run(self, player_score:list[int]):
         clock = pygame.time.Clock()  # ajustar o FPS do jogo
         while True:
             clock.tick(60)
@@ -47,7 +51,21 @@ class Level:
                 if event.type == EVENT_ENEMY:
                     choice = random.choice(('rat', 'rat1', 'rat2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
+                if event.type == EVENT_TIMEOUT:
+                    self.timeout -= 100
+                    if self.timeout <= 0:
+                        for ent in self.entity_list:
+                            if isinstance(ent, Player) and ent.name == 'player':
+                                player_score[0] = ent.score
+                        return True
 
+                #checar se o player ta vivo
+                found_player = False
+                for ent in self.entity_list:
+                    if isinstance(ent, Player):
+                        found_player = True
+                if not found_player:
+                    return False
 
 
             self.level_text(15, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s',text_color=ct,text_pos= (10, 5))
