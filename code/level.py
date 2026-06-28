@@ -24,7 +24,7 @@ class Level:
         x = (EntityFactory.get_entity('player'))
         x.score = player_score[0]
         self.entity_list.append(x)
-        self.timeout: int = 40000  # milisegundos, 90 segundos
+        self.timeout: int = 30000  # milisegundos, 90 segundos
         pygame.time.set_timer(EVENT_ENEMY, 1500)
         pygame.time.set_timer(EVENT_TIMEOUT, 100)
 
@@ -77,7 +77,7 @@ class Level:
             pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
-        text_font: Font = pygame.font.SysFont(name="Impact", size=text_size)
+        text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])
         self.window.blit(source=text_surf, dest=text_rect)
