@@ -20,6 +20,7 @@ ENTITY_SPEED = {
     'rat1': 4,
     'rat2': 5,
 }
+
 EVENT_ENEMY = pygame.USEREVENT + 1
 EVENT_TIMEOUT = pygame.USEREVENT + 2
 

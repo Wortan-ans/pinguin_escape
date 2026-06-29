@@ -10,7 +10,7 @@ class Player(Entity):
         super().__init__(name, position)
         self.shot_delay = 33
 
-    def move(self, ):
+    def move(self):
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_UP] and self.rect.top > 0:  #rect.top e bottom para delimitar a tela
             self.rect.centery -= 3/2
@@ -28,6 +28,8 @@ class Player(Entity):
             pressed_key = pygame.key.get_pressed()
             if pressed_key[pygame.K_SPACE]:
                 return Shot(name=f'{self.name}shot', position=(self.rect.centerx, self.rect.centery))
+            else:
+                return None
+        else:
             return None
-        return None
 

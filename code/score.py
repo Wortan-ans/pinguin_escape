@@ -25,13 +25,12 @@ class Score:
     def save_score(self, menu_return:int, player_score:list[int]):
         db_proxy= DBProxy('dbscore')
         name= ''
+        score = player_score[0]
+        text = 'Enter your name (4 characters):'
+
         while True:
             self.window.blit(self.surf, dest=self.rect)
             self.score_text(45, text= 'CONGRATULATIONS!', text_color=cs, text_center_pos=SCORE_POS['Title'])
-            if menu_return == MENU_OPTION[0]:
-                score = player_score[0]
-                text = 'Enter your name (4 characters):'
-
             self.score_text(20, text,text_color= cs, text_center_pos=SCORE_POS['EnterName'])
 
             for event in pygame.event.get():

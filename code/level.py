@@ -41,7 +41,7 @@ class Level:
                     if shoot is not None:
                      self.entity_list.append(shoot)
                 if ent.name == 'player':
-                    self.level_text(15, f'Player -HP: {ent.hp}', text_color=ct,text_pos= (10, 25))
+                    self.level_text(15, f'Player - HP: {ent.hp}', text_color=ct,text_pos= (10, 25))
                     self.level_text(15, f'Score: {ent.score}', text_color=ct, text_pos=(10, 45))
 
             for event in pygame.event.get():
