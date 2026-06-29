@@ -1,0 +1,9 @@
+Projeto realizado por fins educativos, disciplina de linguagem de programação aplicada.
+jogo 2D Penguin vs Rats
+controle do jogo: setas para movimento, espaço para atirar
+ratos podem variar de velocidade e vida.
+
+link github:
+https://github.com/Wortan-ans/pinguin_escape
+
+Nome: André Nascimento  RU:3682257
